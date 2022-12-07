@@ -35,4 +35,20 @@ function saveIssue(e) {
     assignedTo: issuesAssignedTo,
     status: issueStatus 
   }
+
+  if(localStorage.getItem('issues')===null){
+    let issues = []
+    issues.push(issue)
+    localStorage.setItem('issues', JSON.stringify(issues))
+  } else {
+    let issues = JSON.parse(localStorage.getItem('issues'))
+    issues.push(issue)
+    localStorage.setItem('issues', JSON.stringify(issues))
+  }
+
+  document.getElementById('issueInputForm').reset();
+
+  fetchIssues()
+
+  e.preventDefault()
 }
